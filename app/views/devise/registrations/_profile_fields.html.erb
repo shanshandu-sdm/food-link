@@ -1,0 +1,27 @@
+<div class="form-group">
+  <%= profile_form.text_field :name, required: true, class: "form-control", placeholder: "Name *" %>
+</div>
+
+<div class="form-group">
+  <%= profile_form.text_field :addr_line_1, required: true, class: "form-control", placeholder: "Address Line 1*" %>
+</div>
+
+<div class="form-group">
+  <%= profile_form.text_field :addr_line_2, class: "form-control", placeholder: "Address Line 2"%>
+</div>
+
+<div class="form-group">
+  <%= profile_form.text_field :city, required: true, class: "form-control", placeholder: "City *"%>
+</div>
+
+<div class="form-group">
+  <%= profile_form.select :state, options_for_select(states, resource.profile.try(:state)), {:prompt => "State*"}, :class => 'form-control', required: true %>
+</div>
+
+<div class="form-group">
+  <%= profile_form.text_field :zip, "data-validation" => "required number", class: "form-control", placeholder: "Zipcode *", required: true %>
+</div>
+
+<div class="form-group">
+  <%= profile_form.text_field :phone_number, "data-validation" => "required number", class: "form-control", placeholder: "Phone *", required: true%>
+</div>

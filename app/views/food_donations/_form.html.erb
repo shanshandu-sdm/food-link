@@ -1,0 +1,38 @@
+<div class="form">
+  <%= form_with(model: food_donation, local: true) do |form| %>
+  <% if food_donation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(food_donation.errors.count, "error") %>
+        prohibited this food_donation from being saved:</h2>
+      <ul>
+        <% food_donation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label 'How many people it can serve?'%>
+    <%= form.number_field :quantity, required: true, class: "form-control", placeholder: "10, 15..." %>
+  </div>
+  <div class="form-group">
+    <%= form.label 'When it would be available?' %>
+    <%= form.text_field :available_at, required: true, class: "form-control", id: "datetimepicker" %>
+  </div>
+  <div class="form-group">
+    <%= form.label 'Leave a note for the charity' %>
+    <%= form.text_field :note, required: true, class: "form-control", placeholder: "food allergies, veggie-friendly..." %>
+  </div>
+  <div class="form-group">
+    <%= form.submit "Submit", class: "btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+  var $j = jQuery.noConflict();
+  $j('#datetimepicker').datetimepicker({step: 15, minDate: 0, maxDate: '+1970/01/02'});
+});
+</script>

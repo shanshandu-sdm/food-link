@@ -1,0 +1,57 @@
+<%= form_for @user, :url => user_registration_path do |f| %>
+<div class="container register">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+      <h3>Welcome</h3>
+      <p>FoodLink, link to a better world</p>
+      <p class="text-white">already have an account?
+        <%= link_to "Log in", new_session_path(resource_name)%></p>
+    </div>
+    <div class="col-md-9 register-right">
+      <div class="tab-content" id="myTabContent">
+        <h3 class="register-heading">Sign up</h3>
+        <div class="row register-form">
+          <div class="col-md-12">
+            <%= render "devise/shared/error_messages", resource: resource %>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email *", required: true%>
+            </div>
+            <div class="form-group">
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password *", required: true%>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %>
+                  characters minimum)</em>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password *", required: true%>
+            </div>
+            <div class="form-group">
+              <%= f.label 'Are you ? *' %><br/>
+              <%= f.radio_button :role, 1, :checked => true%>
+              <%= f.label 'Restaurant' %>
+              <%= f.radio_button :role, 2%>
+              <%= f.label 'Charity' %>
+            </div>
+            <div class="form-group">
+              <%= f.label "* is required field"%>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <%= f.fields_for :profile, @user.profile || Profile.new do |prof| %>
+            <%= render 'profile_fields', profile_form: prof %>
+          <% end %>
+          <div class="form-group">
+            <%= f.submit "Sign up", class: "btnRegister" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<% end %>

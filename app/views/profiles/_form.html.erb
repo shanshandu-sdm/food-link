@@ -1,0 +1,46 @@
+<%= form_with(model: profile, local: true) do |form| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.text_field :name, required: true, class: "form-control", placeholder: "Name *" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :addr_line_1, required: true, class: "form-control", placeholder: "Address Line 1*" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :addr_line_2, class: "form-control", placeholder: "Address Line 2"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :city, required: true, class: "form-control", placeholder: "City *"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.select :state, options_for_select(states, profile.try(:state)), {:prompt => "State*"}, :class => 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :zip, "data-validation" => "required number", class: "form-control", placeholder: "Zipcode *", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :phone_number, "data-validation" => "required number", class: "form-control", placeholder: "Phone *", required: true%>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

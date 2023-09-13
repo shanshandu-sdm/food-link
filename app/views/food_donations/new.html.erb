@@ -1,0 +1,17 @@
+<body id="food_donation">
+  <section class="portfolio">
+
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          Create A New Food Donation
+        </div>
+        <div class="card-body">
+          <%= render 'form', food_donation: @food_donation %>
+
+          <%= link_to 'Back', food_donations_path %>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
